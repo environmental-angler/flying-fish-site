@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flying Fish Stream Science</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Fish passage and stream-crossing science for towns, agencies, tribes and conservation partners in Maine. Assess, document, and verify road-stream crossing projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: StoryBrand single page. Hero question + stream long-profile drawing, then problem → guide → plan → services → proof → stakes → contact.
+   Palette from the field: lichen paper, spruce, tannin water, survey-flagging pink as the one loud color. */
+:root{
+  --paper:#F2F4F1; --paper-2:#E5EAE5; --ink:#1B211E; --ink-soft:#4A554F;
+  --spruce:#22463B; --tannin:#6B4623; --water:#8A5A2E; --flag:#C4245B; --rule:#C7CFC9;
+  --on-spruce:#EEF3EF;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121714; --paper-2:#1A211D; --ink:#E4EAE5; --ink-soft:#A3AFA8;
+  --spruce:#86BBA8; --tannin:#D2A272; --water:#B9804A; --flag:#FF6C9C; --rule:#2D3732;
+  --on-spruce:#0F1512; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#121714; --paper-2:#1A211D; --ink:#E4EAE5; --ink-soft:#A3AFA8;
+  --spruce:#86BBA8; --tannin:#D2A272; --water:#B9804A; --flag:#FF6C9C; --rule:#2D3732;
+  --on-spruce:#0F1512; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-stretch:78%;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:750;letter-spacing:-.01em}
+h3{font-size:1.3rem;font-weight:700;font-stretch:85%}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--flag)}
+.lede{font-size:1.2rem;color:var(--ink-soft);max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--flag);outline-offset:3px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{flex:none}
+.brand b{font-family:var(--display);font-stretch:80%;font-size:1.15rem;font-weight:750;line-height:1}
+.brand small{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
+nav.links{display:flex;gap:22px;margin-left:auto;font-family:var(--display);font-stretch:90%;font-weight:550;font-size:.95rem}
+nav.links a{text-decoration:none;color:var(--ink-soft)}
+nav.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-stretch:88%;font-weight:700;font-size:1rem;text-decoration:none;padding:.7em 1.15em;border-radius:3px;border:2px solid var(--spruce);background:var(--spruce);color:var(--on-spruce);cursor:pointer}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--spruce)}
+.btn.ghost:hover{background:var(--spruce);color:var(--on-spruce)}
+header.site .btn{padding:.5em .9em;font-size:.92rem}
+@media (max-width:820px){nav.links{display:none} header.site .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.9rem);font-weight:800;font-stretch:68%;letter-spacing:-.015em;margin-block:14px 18px}
+.hero h1 em{font-style:normal;color:var(--flag)}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+figure.profile{margin:0;min-width:0}
+figure.profile svg{width:100%;height:auto;display:block}
+figure.profile figcaption{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+
+/* sections */
+section{padding-block:72px}
+section + section{border-top:1px solid var(--rule)}
+.head{display:grid;gap:14px;margin-bottom:36px;max-width:760px}
+
+/* problem */
+.problem .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.problem .grid > div{display:grid;gap:8px;align-content:start}
+.problem .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+@media (max-width:760px){.problem .grid{grid-template-columns:1fr}}
+
+/* guide */
+.guide{background:var(--paper-2)}
+.guide .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.guide .copy{display:grid;gap:16px;align-content:start}
+.creds{list-style:none;margin:0;padding:0;display:grid;border-top:2px solid var(--ink)}
+.creds li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding-block:12px;border-bottom:1px solid var(--rule)}
+.creds li span:last-child{font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);text-align:right;white-space:nowrap}
+.creds li.pending span:last-child{color:var(--flag)}
+@media (max-width:760px){.guide .wrap{grid-template-columns:1fr}}
+
+/* plan */
+.plan ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;counter-reset:step}
+.plan li{counter-increment:step;padding:24px 28px 28px 0;display:grid;gap:10px;align-content:start;position:relative}
+.plan li + li{padding-left:28px;border-left:1px solid var(--rule)}
+.plan li::before{content:"Step " counter(step);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flag)}
+.plan h3{font-size:2rem;font-stretch:70%;font-weight:800}
+.plan .gets{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);border-top:1px dashed var(--rule);padding-top:10px;margin-top:4px}
+@media (max-width:760px){.plan ol{grid-template-columns:1fr}.plan li,.plan li + li{padding:20px 0;border-left:0;border-top:1px solid var(--rule)}}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.svc article{padding:24px 28px 26px 0;border-bottom:1px solid var(--rule);display:grid;gap:10px;align-content:start}
+.svc article:nth-child(even){padding-left:28px;padding-right:0;border-left:1px solid var(--rule)}
+.svc dl{margin:4px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-size:.92rem}
+.svc dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);padding-top:3px}
+.svc dd{margin:0}
+@media (max-width:760px){.svc{grid-template-columns:1fr}.svc article,.svc article:nth-child(even){padding:22px 0;border-left:0}}
+
+/* compliance band */
+.band{background:var(--spruce);color:var(--on-spruce)}
+.band .eyebrow{color:var(--on-spruce);opacity:.8}
+.band .lede{color:var(--on-spruce);opacity:.9}
+.band .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:8px}
+.band .grid > div{display:grid;gap:8px;align-content:start;border-top:1px solid color-mix(in srgb,var(--on-spruce) 35%,transparent);padding-top:16px}
+@media (max-width:760px){.band .grid{grid-template-columns:1fr}}
+
+/* field notes */
+.notes .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.note{display:grid;gap:10px;align-content:start;padding-top:14px;border-top:2px solid var(--ink)}
+.note .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;gap:10px}
+.note .meta b{font-weight:500;color:var(--flag)}
+@media (max-width:860px){.notes .grid{grid-template-columns:1fr}}
+
+/* stakes */
+.stakes .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.stakes ul{margin:12px 0 0;padding-left:1.1em;display:grid;gap:8px}
+.stakes .with h3{color:var(--spruce)}
+.stakes .without h3{color:var(--tannin)}
+@media (max-width:760px){.stakes .grid{grid-template-columns:1fr}}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:48px;align-items:start}
+.portrait{aspect-ratio:4/5;max-width:100%;background:var(--paper-2);border:1px dashed var(--rule);display:grid;place-items:center;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);text-align:center;padding:16px}
+.about .copy{display:grid;gap:16px;max-width:62ch}
+@media (max-width:760px){.about .wrap{grid-template-columns:1fr}.portrait{max-width:320px}}
+
+/* contact */
+.contact{background:var(--paper-2)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.contact .copy{display:grid;gap:16px;align-content:start}
+.addr{font-family:var(--mono);font-size:.88rem;line-height:1.8}
+form{display:grid;gap:14px}
+label{display:grid;gap:5px;font-family:var(--display);font-stretch:90%;font-weight:600;font-size:.95rem}
+input,select,textarea{font:inherit;font-family:var(--body);font-size:1rem;padding:.65em .75em;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);width:100%}
+textarea{min-height:120px;resize:vertical}
+.formnote{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+#form-status{font-family:var(--mono);font-size:.82rem;color:var(--flag)}
+@media (max-width:760px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{padding-block:32px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.76rem;color:var(--ink-soft)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Flying Fish Stream Science, home">
+      <svg width="38" height="38" viewBox="0 0 36 36" aria-hidden="true">
+        <path d="M28.6 10.5 A13 13 0 1 0 28.6 25.5" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M8.5 18 C13 12, 16 24, 21 18 S29 13.5, 35 18" fill="none" stroke="var(--flag)" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span><b>Flying Fish</b><small>Stream Science</small></span>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#approach">Approach</a>
+      <a href="#services">Services</a>
+      <a href="#field-notes">Field notes</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn" href="#contact">Talk through a crossing</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO: the client's question -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Road-stream crossings · Fish passage · Maine</p>
+        <h1>Did the fish actually <em>get through?</em></h1>
+        <p class="lede">You're replacing culverts to reconnect streams. We help towns, agencies, tribes and conservation partners assess crossings, document the work, and verify that fish pass afterward, so you can show funders the stream is open again.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">Talk through a crossing</a>
+          <a class="btn ghost" href="#approach">See how it works</a>
+        </div>
+      </div>
+      <figure class="profile">
+        <svg viewBox="0 0 720 300" role="img" aria-labelledby="pf-t">
+          <title id="pf-t">Long profile of a stream passing under a road through a perched culvert. Water drops 1.6 feet from the culvert outlet to the pool below, and a trout waits downstream.</title>
+          <!-- grid -->
+          <g stroke="var(--rule)" stroke-width="1" fill="none">
+            <line x1="40" y1="20" x2="40" y2="262"/><line x1="240" y1="20" x2="240" y2="262"/>
+            <line x1="440" y1="20" x2="440" y2="262"/><line x1="640" y1="20" x2="640" y2="262"/>
+          </g>
+          <!-- water: upstream, in pipe, downstream -->
+          <path d="M0 160 L272 168 L272 186 L0 186 Z" fill="var(--water)" opacity=".38"/>
+          <path d="M455 222 L720 222 L720 250 L455 250 Z" fill="var(--water)" opacity=".38"/>
+          <path d="M450 182 C458 190, 462 206, 470 222" fill="none" stroke="var(--water)" stroke-width="3" opacity=".7"/>
+          <!-- streambed -->
+          <path d="M0 176 L270 188 L450 192 L466 232 L520 246 L560 238 L720 236 L720 262 L0 262 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.6"/>
+          <!-- road embankment -->
+          <path d="M226 186 L292 108 L428 108 L494 200" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.6"/>
+          <line x1="292" y1="108" x2="428" y2="108" stroke="var(--ink)" stroke-width="5"/>
+          <text x="360" y="98" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-soft)">TOWN ROAD</text>
+          <!-- culvert -->
+          <path d="M270 150 L452 154 L452 192 L270 188 Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M270 172 L452 178 L452 192 L270 188 Z" fill="var(--water)" opacity=".45"/>
+          <text x="361" y="144" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink)">36-in CULVERT</text>
+          <!-- outlet drop dimension -->
+          <g stroke="var(--flag)" stroke-width="1.4" fill="none">
+            <line x1="454" y1="192" x2="520" y2="192" stroke-dasharray="3 3"/>
+            <line x1="512" y1="192" x2="512" y2="222"/>
+            <path d="M508 198 L512 192 L516 198 M508 216 L512 222 L516 216"/>
+          </g>
+          <text x="522" y="203" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" fill="var(--flag)">OUTLET DROP</text>
+          <text x="522" y="217" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" fill="var(--flag)">1.6 ft</text>
+          <!-- fish + attempted leap -->
+          <path d="M598 233 q-16 -46 -110 -36" fill="none" stroke="var(--ink-soft)" stroke-width="1.2" stroke-dasharray="4 4"/>
+          <g transform="translate(600 234)">
+            <path d="M-14 0 C-8 -7, 8 -7, 14 0 C8 7, -8 7, -14 0 Z" fill="var(--spruce)"/>
+            <path d="M13 0 L22 -6 L22 6 Z" fill="var(--spruce)"/>
+            <circle cx="-8" cy="-1.5" r="1.4" fill="var(--paper)"/>
+          </g>
+          <!-- flow arrow -->
+          <g fill="none" stroke="var(--ink-soft)" stroke-width="1.4"><line x1="60" y1="140" x2="150" y2="143"/><path d="M143 138 L151 143 L143 148"/></g>
+          <text x="60" y="132" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-soft)">FLOW</text>
+          <!-- stations -->
+          <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-soft)" text-anchor="middle">
+            <text x="40" y="282">0+00</text><text x="240" y="282">0+50</text><text x="440" y="282">1+00</text><text x="640" y="282">1+50</text>
+          </g>
+        </svg>
+        <figcaption>Illustration · long profile, stations in feet. A perched, undersized culvert is a common barrier: the pipe is narrower than the stream and its outlet hangs above the pool.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">The problem</p>
+        <h2>The culvert gets replaced. The question stays open.</h2>
+      </div>
+      <div class="grid">
+        <div>
+          <p class="tag">On the ground</p>
+          <h3>Undersized crossings cut streams in two</h3>
+          <p>Perched and narrow culverts block brook trout, salmon, river herring and eels, and they wash out in big storms. Many towns have dozens and money for a few.</p>
+        </div>
+        <div>
+          <p class="tag">For your team</p>
+          <h3>Short staff, long checklists</h3>
+          <p>Grant timelines, permit windows and design reviews leave little time for careful field data, and almost none for going back after construction.</p>
+        </div>
+        <div>
+          <p class="tag">What's fair</p>
+          <h3>Public money should come with proof</h3>
+          <p>When a community spends on fish passage, it deserves to know whether fish are passing. Funders increasingly ask the same thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="guide" id="guide">
+    <div class="wrap">
+      <div class="copy">
+        <p class="eyebrow">Your field partner</p>
+        <h2>We know the water and the paperwork.</h2>
+        <p>Flying Fish is a small, veteran-owned fisheries practice based in Downeast Maine. We've counted river herring at fishways, deployed eDNA samplers and telemetry receivers, repaired electronic fish counters, and worked on stream-crossing projects from assessment into design.</p>
+        <p>We work to published standards, write down every procedure, and report what we find, including when a crossing or a method falls short.</p>
+      </div>
+      <ul class="creds" aria-label="Training and credentials">
+        <li><span>USFS Stream Simulation: Aquatic Organism Passage at Road-Stream Crossings</span><span>Complete</span></li>
+        <li><span>Stream Smart, Phases I &amp; II (Maine Audubon / Maine DEP)</span><span>Complete</span></li>
+        <li><span>Smith-Root electrofishing principles and safety</span><span>Certified</span></li>
+        <li><span>ESRI GIS coursework; UMaine GIS micro-credential</span><span>In progress</span></li>
+        <li class="pending"><span>FAA Part 107 Remote Pilot</span><span>In progress</span></li>
+        <li class="pending"><span>NACC crossing observer certification</span><span>When offered</span></li>
+        <li><span>Air Force flight medic; firefighter/paramedic</span><span>Field safety</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="plan" id="approach">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">How it works</p>
+        <h2>Three steps, from barrier to proof.</h2>
+        <p class="lede">You can hire us for one step or all three. Each one hands off cleanly to your engineer, contractor or funder.</p>
+      </div>
+      <ol>
+        <li>
+          <h3>Assess</h3>
+          <p>Survey crossings to the NACC protocol, score barriers, and rank which ones to fix first. For design, we survey reference reaches to match the new crossing to the stream.</p>
+          <p class="gets">You get: scored crossing data, a ranked list, design-ready survey data</p>
+        </li>
+        <li>
+          <h3>Document</h3>
+          <p>Record conditions before, during and after construction with ground photos and drone imagery, and check the as-built against the design.</p>
+          <p class="gets">You get: dated photo record, orthomosaics, as-built memo</p>
+        </li>
+        <li>
+          <h3>Verify</h3>
+          <p>Show that the crossing works: re-survey the channel, then confirm fish presence and passage with counters, eDNA, telemetry or electrofishing.</p>
+          <p class="gets">You get: effectiveness report written for funders</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Services</p>
+        <h2>What we do in the field</h2>
+      </div>
+      <div class="svc">
+        <article>
+          <h3>Crossing assessment and barrier prioritization</h3>
+          <p>Culvert and stream-crossing surveys for towns, land trusts and watershed groups, including those funded through Maine DEP's Municipal Stream Crossing Grant Program.</p>
+          <dl><dt>Standard</dt><dd>NACC protocol; Stream Smart</dd><dt>Deliverable</dt><dd>Assessment report and ranked list</dd></dl>
+        </article>
+        <article>
+          <h3>Reference-reach surveys for design</h3>
+          <p>Long profiles, cross-sections, bankfull width and bed material from a stable reach, so the engineer can size the new crossing to the stream.</p>
+          <dl><dt>Standard</dt><dd>USFS Stream Simulation (2008)</dd><dt>Deliverable</dt><dd>Survey data and site memo</dd></dl>
+        </article>
+        <article>
+          <h3>Construction monitoring and as-builts</h3>
+          <p>Site visits during the in-water work window, photo points, erosion-control checks, and a final as-built comparison.</p>
+          <dl><dt>Standard</dt><dd>Project permits; design drawings</dd><dt>Deliverable</dt><dd>Photo log and as-built memo</dd></dl>
+        </article>
+        <article>
+          <h3>Effectiveness monitoring</h3>
+          <p>Physical re-survey of the crossing plus biological evidence of passage: fish counters, eDNA sampling, radio telemetry and electrofishing.</p>
+          <dl><dt>Standard</dt><dd>Published methods; written SOPs</dd><dt>Deliverable</dt><dd>Effectiveness report</dd></dl>
+        </article>
+        <article>
+          <h3>Drone thermal and imagery surveys</h3>
+          <p>Stream surface-temperature mapping to find cold-water refuges, high-resolution site mapping, and salmonid redd surveys. Thermal results are checked against in-stream loggers.</p>
+          <dl><dt>Aircraft</dt><dd>NDAA-compliant only</dd><dt>Deliverable</dt><dd>Maps, imagery, survey report</dd></dl>
+        </article>
+        <article>
+          <h3>Field technician support</h3>
+          <p>Seasonal help for research and agency crews: counter maintenance and repair, eDNA collection, telemetry deployment, electrofishing crew.</p>
+          <dl><dt>Terms</dt><dd>Daily or seasonal</dd><dt>Deliverable</dt><dd>Field data to your protocol</dd></dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE BAND -->
+  <section class="band" id="standards">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Built for federally funded work</p>
+        <h2>Ready for the funding you already have.</h2>
+        <p class="lede">Many crossing projects run on federal money, which brings rules about drones, records and contractors. We set up for those rules from the start.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h3>Compliant drones</h3>
+          <p>Since December 2025, federal funds can't pay for drones from covered foreign makers. We fly only NDAA-compliant aircraft.</p>
+        </div>
+        <div>
+          <h3>Written procedures</h3>
+          <p>Every field method follows a versioned standard operating procedure written from public protocols. Proposals and reports cite the version used.</p>
+        </div>
+        <div>
+          <h3>Service-disabled veteran-owned</h3>
+          <p>Eligible for federal set-asides once SBA certification and SAM.gov registration are complete.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIELD NOTES -->
+  <section class="notes" id="field-notes">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Field notes</p>
+        <h2>What we're learning on the water</h2>
+        <p class="lede">Short write-ups on methods, standards and results. First posts are in preparation.</p>
+      </div>
+      <div class="grid">
+        <article class="note">
+          <p class="meta"><span>Methods</span><b>Draft</b></p>
+          <h3>Counting salmon redds from the air in tea-colored water</h3>
+          <p>Drones have been tested for Pacific salmon redd counts, never for Atlantic salmon. Here's how a side-by-side pilot with canoe counts could work on a Downeast river.</p>
+        </article>
+        <article class="note">
+          <p class="meta"><span>Standards</span><b>Draft</b></p>
+          <h3>NAACC is now NACC: what changes for Maine towns</h3>
+          <p>The crossing-assessment collaborative went national in 2026. What stays the same in the field, and where its data and tools now live.</p>
+        </article>
+        <article class="note">
+          <p class="meta"><span>Thermal</span><b>Draft</b></p>
+          <h3>Finding cold water from 200 feet up</h3>
+          <p>What a thermal camera can and can't tell you about a brook, why we fly early, and why loggers in the stream still matter.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKES -->
+  <section class="stakes">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Why it matters</p>
+        <h2>What a verified crossing is worth</h2>
+      </div>
+      <div class="grid">
+        <div class="with">
+          <h3>With field data and follow-up</h3>
+          <ul>
+            <li>Your grant reports show fish passage, not just a finished pipe.</li>
+            <li>Your next application is stronger because the last one delivered.</li>
+            <li>Problems are caught while the contractor can still fix them.</li>
+            <li>Miles of upstream habitat open for spawning and cold-water refuge.</li>
+          </ul>
+        </div>
+        <div class="without">
+          <h3>Without them</h3>
+          <ul>
+            <li>A new crossing can still block fish if grade or embedment is off.</li>
+            <li>Nobody finds out until the next assessment, years later.</li>
+            <li>Funders see spending, with no measured result.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="portrait" role="img" aria-label="Photo placeholder">Photo: Mike in the field<br>(at a crossing or fishway)</div>
+      <div class="copy">
+        <p class="eyebrow">About</p>
+        <h2>Mike Manning, fisheries biologist</h2>
+        <p>I spent my first career as an Air Force flight medic and a civilian firefighter and paramedic. After graduate school I came to fisheries, and I've spent the last several years working on rivers in Downeast Maine: fishways, fish counters, telemetry and stream crossings.</p>
+        <p>I started Flying Fish because the same question kept coming up after crossings were rebuilt: did it work? Answering it takes field skills that sit between engineering, biology and data. That's the work I like best.</p>
+        <p>I work alone much of the time and bring the safety habits of my first career to cold water and roadside sites. When a project needs a larger crew, I team with partners I trust.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="copy">
+        <p class="eyebrow">Next step</p>
+        <h2>Tell us about your crossing.</h2>
+        <p>Send a road name, a stream, or a grant you're working on. We'll reply within two business days with how we'd approach it and what it would take.</p>
+        <p class="addr">Flying Fish Stream Science<br>East Machias, Maine<br>[business email to come]<br>[business phone to come]</p>
+      </div>
+      <form id="contact-form" novalidate>
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+        <label for="f-org">Organization<input id="f-org" name="organization" autocomplete="organization" placeholder="Town, agency, tribe, land trust, firm"></label>
+        <label for="f-type">What do you need?
+          <select id="f-type" name="type">
+            <option>Crossing assessment</option>
+            <option>Design survey</option>
+            <option>Construction monitoring</option>
+            <option>Effectiveness monitoring</option>
+            <option>Drone thermal or imagery survey</option>
+            <option>Field technician support</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label for="f-msg">About the project<textarea id="f-msg" name="message" placeholder="Location, stream, timeline, funding source"></textarea></label>
+        <button class="btn" type="submit">Send</button>
+        <p id="form-status" role="status" aria-live="polite"></p>
+        <p class="formnote">Draft site: this form isn't connected yet. It will send to the business email once the site is hosted.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Flying Fish Stream Science · East Machias, Maine</span>
+    <span>Service-disabled veteran-owned small business</span>
+    <span>Field science for connected streams</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('f-name');
+  var status = document.getElementById('form-status');
+  if (!name.value.trim()) { status.textContent = 'Add your name so we know who to reply to.'; name.focus(); return; }
+  status.textContent = 'Not sent: this draft form is not connected yet.';
+});
+</script>
+</body>
+</html>
